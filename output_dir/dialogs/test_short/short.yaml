@@ -1,0 +1,22 @@
+dialogs:
+  short:
+    name: short
+    topic: test_short
+    active: true
+    start_actions:
+    - it doesn't matter here
+    end_actions:
+    - it doesn't matter here
+    answers:
+    - text: This is short
+    - buttons:
+      - title: short title
+    - conditions:
+      - it doesn't matter here
+    required_variables: {}
+    samples:
+    - text: Hello
+      intent: start_dialog
+    - text: Who are you?
+      intent: end
+    description: short dialog
