@@ -82,11 +82,11 @@ def parse_yaml_to_csv(yaml_file, csv_file):
         writer.writerow(csv_headers)
         writer.writerows(rows)
 
-    print(f"✅ CSV успешно создан: {csv_file}")
+    print(f"CSV created: {csv_file}")
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Usage: python yaml_to_csv.py <input_yaml> <output_csv>")
+        print("Usage: python converter.py <input_yaml> <output_csv>")
         sys.exit(1)
     
     yaml_file = sys.argv[1]
