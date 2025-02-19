@@ -1,0 +1,3 @@
+Topic;Name;Answer;Description;Active;Title;Payload;Conditions;Required_variables;Start_actions;End_actions;Samples;Intent
+topic;name;text;wow that script is worked;1;;;;;;;Hola bro!|Kik master|kung fu master;
+leads;options;What options do you want to know about leads?;wow that script is worked;1;"option 1;option 2";"https://link.com;/dialog{{""dialog_id"":""example1""}}";;;;;Hola bro!|Kik master|kung fu master;
