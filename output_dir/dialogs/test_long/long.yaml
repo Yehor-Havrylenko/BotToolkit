@@ -8,13 +8,19 @@ dialogs:
     end_actions:
     - it doesn't matter here
     answers:
-    - text: There should be a long text here however i use more spaces and hyphens for demonstration
+    - text: >-
+          'There should be a long text here however i use more spaces
+          and hyphens for demonstration'
     - buttons:
       - title: this is long text for demonstration
     - conditions:
       - it doesn't matter here
     required_variables: {}
     samples:
-    - text: Hello, There should be a long text here however i use more spaces and hyphens for demonstration
-    - text: There should be a long text here however i use more spaces and hyphens for demonstration
+    - text: >-
+          'Hello, There should be a long text here however i use more
+          spaces and hyphens for demonstration'
+    - text: >-
+          'There should be a long text here however i use more spaces
+          and hyphens for demonstration'
     description: long dialog

@@ -8,15 +8,15 @@ dialogs:
     end_actions:
     - it doesn't matter here
     answers:
-    - text: This is short
+    - text: 'This is short'
     - buttons:
       - title: short title
     - conditions:
       - it doesn't matter here
     required_variables: {}
     samples:
-    - text: Hello
+    - text: 'Hello'
       intent: start_dialog
-    - text: Who are you?
+    - text: 'Who are you?'
       intent: end
     description: short dialog
