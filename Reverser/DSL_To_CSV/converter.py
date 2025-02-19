@@ -4,8 +4,15 @@ import csv
 import sys
 import re
 
+import yaml
+import csv
+import sys
+import re
+
 def clean_text(text):
-    text = text.replace(',', '')
+    if not text:
+        return ""
+    text = text.replace(',', '')  
     text = re.sub(r'<bubble_split>', '', text)
     return text.strip()
 
@@ -46,14 +53,14 @@ def parse_yaml_to_csv(yaml_file, csv_file):
                 payload_str = ";".join(payloads) if payloads else ""
 
                 samples = content.get('samples', [])
-
                 sample_texts = []
+
                 if isinstance(samples, list):
                     for sample in samples:
                         if isinstance(sample, dict) and 'text' in sample:
                             sample_texts.append(clean_text(sample['text']))
                         elif isinstance(sample, str):  
-                            sample_texts.append(clean_text(sample))  
+                            sample_texts.append(clean_text(sample))
 
                 samples_str = "|".join(sample_texts) if sample_texts else ""
 
@@ -71,18 +78,19 @@ def parse_yaml_to_csv(yaml_file, csv_file):
                 rows.append(row)
 
     with open(csv_file, 'w', encoding='utf-8', newline='') as f:
-        writer = csv.writer(f, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         writer.writerow(csv_headers)
         writer.writerows(rows)
 
-    print(f"CSV created: {csv_file}")
+    print(f"✅ CSV успешно создан: {csv_file}")
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Usage: python converter.py <input_yaml> <output_csv>")
+        print("Usage: python yaml_to_csv.py <input_yaml> <output_csv>")
         sys.exit(1)
     
     yaml_file = sys.argv[1]
     csv_file = sys.argv[2]
     
     parse_yaml_to_csv(yaml_file, csv_file)
+
