@@ -1,0 +1,17 @@
+dialogs:
+  Contact:
+    name: Contact
+    topic: support
+    active: false
+    start_actions: []
+    end_actions: []
+    answers:
+    - text: >-
+          '📞 You can contact our support team via:
+          📧 Email: support@example.com
+          📱 Phone: +1 234 567 890'
+    - buttons:
+      - title: 🔙 Back
+        payload: /dialog{"dialog_id":"start"}
+    required_variables: {}
+    samples: []

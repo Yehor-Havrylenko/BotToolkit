@@ -1,0 +1,19 @@
+dialogs:
+  Help:
+    name: Help
+    topic: general
+    active: false
+    start_actions: []
+    end_actions: []
+    answers:
+    - text: >-
+          'ℹ️ Here’s what I can do for you:'
+    - buttons:
+      - title: 🔑 Account issues
+        payload: /dialog{"dialog_id":"login"}
+      - title: 💰 Check balance
+        payload: /dialog{"dialog_id":"balance"}
+      - title: 📞 Contact support
+        payload: /dialog{"dialog_id":"contact"}
+    required_variables: {}
+    samples: []

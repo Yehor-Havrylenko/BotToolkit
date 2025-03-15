@@ -1,0 +1,6 @@
+Topic,Name,Answer,Description,Active,Title,Payload,Conditions,Required_variables,Start_actions,End_actions,Samples,Intent
+General,Start,👋 Hello! Welcome to our bot. How can I help you today?,,1.0,📖 Help;🔑 Log in;💬 Contact support;,"/dialog{""dialog_id"":""help""};/dialog{""dialog_id"":""login""};/dialog{""dialog_id"":""contact""};",,,,,,
+General,Help,ℹ️ Here’s what I can do for you:,,1.0,🔑 Account issues;💰 Check balance;📞 Contact support;,"/dialog{""dialog_id"":""login""};/dialog{""dialog_id"":""balance""};/dialog{""dialog_id"":""contact""};",,,,,,
+Account,Login,🔑 Please enter your login details.,,,🔙 Back,"/dialog{""dialog_id"":""start""};",user_is_logged_in,,,,,
+Account,Balance,💰 Your current balance is: 0 USD.,,,🔄 Refresh;🔙 Back;,"/dialog{""dialog_id"":""balance""};/dialog{""dialog_id"":""start""};",,,,,,
+Support,Contact,📞 You can contact our support team via:\n 📧 Email: support@example.com\n📱 Phone: +1 234 567 890,,,🔙 Back,"/dialog{""dialog_id"":""start""};",,,,,,

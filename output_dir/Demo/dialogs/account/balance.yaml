@@ -1,0 +1,17 @@
+dialogs:
+  Balance:
+    name: Balance
+    topic: account
+    active: false
+    start_actions: []
+    end_actions: []
+    answers:
+    - text: >-
+          '💰 Your current balance is: 0 USD.'
+    - buttons:
+      - title: 🔄 Refresh
+        payload: /dialog{"dialog_id":"balance"}
+      - title: 🔙 Back
+        payload: /dialog{"dialog_id":"start"}
+    required_variables: {}
+    samples: []

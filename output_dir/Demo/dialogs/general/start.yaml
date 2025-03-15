@@ -1,0 +1,19 @@
+dialogs:
+  Start:
+    name: Start
+    topic: general
+    active: false
+    start_actions: []
+    end_actions: []
+    answers:
+    - text: >-
+          👋 Hello! Welcome to our bot. How can I help you today?
+    - buttons:
+      - title: 📖 Help
+        payload: /dialog{"dialog_id":"help"}
+      - title: 🔑 Log in
+        payload: /dialog{"dialog_id":"login"}
+      - title: 💬 Contact support
+        payload: /dialog{"dialog_id":"contact"}
+    required_variables: {}
+    samples: []

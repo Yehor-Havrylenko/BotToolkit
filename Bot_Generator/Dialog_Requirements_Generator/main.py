@@ -54,24 +54,21 @@ def main():
         topics_dict["other"] = {"name": "Other"}
 
     final_topics = {"topics": topics_dict}
-    topics_file = os.path.join(output_dir, "topics.yml")
+    topics_file = os.path.join(output_dir, "topics.yaml")
     with open(topics_file, "w", encoding="utf-8") as tf:
         yaml.dump(final_topics, tf,
                   sort_keys=False,
                   allow_unicode=True,
                   width=9999,
                   default_flow_style=False)
-    print(f"Created topics.yml at '{topics_file}'.")
+    print(f"Created topics.yaml at '{topics_file}'.")
 
     created_topic_folders = set()
     for d in dialogs_data:
         topic_raw = d["Topic"]
-        if topic_raw:
-            topic_lower = topic_raw.lower()
-            topic_original = topic_raw
-        else:
-            topic_lower = "other"
-            topic_original = "Other"
+        topic_lower = topic_raw.lower() if topic_raw else "other"
+        topic_original = topic_raw if topic_raw else "Other"
+
         topic_folder = os.path.join(base_dialogs_path, topic_lower)
         if topic_folder not in created_topic_folders:
             os.makedirs(topic_folder, exist_ok=True)
@@ -80,29 +77,31 @@ def main():
         dialog_name = d["Name"]
         desc = d["Description"]
         active_val = str_to_bool(d["Active"])
-
         fname_core = sanitize_filename(dialog_name)
-        
         raw_answer = process_answer(d["Answer"], 120)
-        
+
         button_list = split_by_sep(d["Title"], ";")
-        cond_list   = split_by_sep(d["Conditions"], ";")
-        payload_list= split_by_sep(d["Payload"], ";")
+        payload_list = split_by_sep(d["Payload"], ";")
+        cond_list = split_by_sep(d["Conditions"], ";")
         reqv_str = d["Required_variables"]
         reqv_data = {} if not reqv_str else {}
         start_list = split_by_sep(d["Start_actions"], ";")
-        end_list   = split_by_sep(d["End_actions"], ";")
+        end_list = split_by_sep(d["End_actions"], ";")
         samples_list = build_samples_list(d["Samples"], d["Intent"])
 
         answers_array = []
-        answers_array.append({"text": raw_answer})
+        answer_obj = {"text": raw_answer} if raw_answer else {}
+
         if button_list:
-            btn_obj = {"buttons": []}
-            for btitle in button_list:
-                btn_obj["buttons"].append({"title": btitle})
-            answers_array.append(btn_obj)
+            answer_obj["buttons"] = [
+                {"title": button_list[i], "payload": payload_list[i] if i < len(payload_list) else ""}
+                for i in range(len(button_list))
+            ]
+
         if cond_list:
-            answers_array.append({"conditions": cond_list})
+            answer_obj["conditions"] = cond_list
+
+        answers_array.append(answer_obj)
 
         dialogs_block = {
             dialog_name: {
@@ -129,7 +128,7 @@ def main():
                       default_flow_style=False)
         print(f"Created dialog file: {out_file}")
 
-    print(f"Done! Dialogs are created under '{base_dialogs_path}' and topics.yml is at '{topics_file}'.")
+    print(f"Done! Dialogs are created under '{base_dialogs_path}' and topics.yaml is at '{topics_file}'.")
 
 if __name__ == "__main__":
     main()

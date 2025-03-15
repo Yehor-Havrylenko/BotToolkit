@@ -1,0 +1,17 @@
+dialogs:
+  Login:
+    name: Login
+    topic: account
+    active: false
+    start_actions: []
+    end_actions: []
+    answers:
+    - text: >-
+          🔑 Please enter your login details.
+    - buttons:
+      - title: 🔙 Back
+        payload: /dialog{"dialog_id":"start"}
+    - conditions:
+      - user_is_logged_in
+    required_variables: {}
+    samples: []
